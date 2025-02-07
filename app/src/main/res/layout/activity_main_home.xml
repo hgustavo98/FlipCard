@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlipCardActivity"
+    android:background="@color/background">
+
+    <!-- Logo do aplicativo -->
+    <LinearLayout
+        android:id="@+id/logo_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:id="@+id/flip_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@android:drawable/ic_menu_gallery"/>
+
+        <TextView
+            android:id="@+id/flip_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flip Card"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+
+    <!-- Campo de texto e botão de adicionar -->
+    <EditText
+        android:id="@+id/deck_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Criar novo baralho"
+        android:background="@drawable/border_component"
+        android:padding="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/add_deck_btn"
+        app:layout_constraintTop_toBottomOf="@id/logo_container"
+        android:layout_margin="10dp"/>
+
+    <ImageButton
+        android:id="@+id/add_deck_btn"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/baseline_add_circle_outline_24"
+        android:contentDescription="Adicionar baralho"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="@id/deck_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/deck_name" />
+
+    <!-- Lista de baralhos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deck_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deck_name"
+        app:layout_constraintBottom_toTopOf="@id/submit_btn"
+        android:layout_margin="10dp"/>
+
+    <!-- Botão Azul com "S" -->
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:backgroundTint="@color/blue"
+        android:text="S"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
