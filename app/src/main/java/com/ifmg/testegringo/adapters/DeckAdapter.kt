@@ -1,35 +1,40 @@
+package com.ifmg.testegringo.adapters
 
-import android.R
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ifmg.testegringo.R
+import com.ifmg.testegringo.model.Deck
 
-class DeckAdapter(deckList: List<Deck>) : RecyclerView.Adapter<DeckAdapter.DeckViewHolder>() {
-    private val deckList: List<Deck> = deckList
+class DeckAdapter(private val context: Context, private var decks: MutableList<Deck>) :
+    RecyclerView.Adapter<DeckAdapter.DeckViewHolder>() {
+
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeckViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_deck, parent, false)
+        val view = inflater.inflate(R.layout.item_deck, parent, false)
         return DeckViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DeckViewHolder, position: Int) {
-        val deck: Deck = deckList[position]
-        holder.deckNameText.setText(deck.getName())
-        // Defina outros dados para o item aqui
+        val deck = decks[position]
+        holder.deckName.text = deck.name
     }
 
     override fun getItemCount(): Int {
-        return deckList.size
+        return decks.size
+    }
+
+    fun updateDecks(newDecks: List<Deck>) {
+        decks.clear()
+        decks.addAll(newDecks)
+        notifyDataSetChanged()
     }
 
     class DeckViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var deckNameText: TextView = itemView.findViewById<TextView>(R.id.deck_name_text)
-
-        init {
-            // Inicie outros componentes aqui
-        }
+        val deckName: TextView = itemView.findViewById(R.id.deck_name_item)
     }
 }
